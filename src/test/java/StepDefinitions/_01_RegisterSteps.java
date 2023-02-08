@@ -28,7 +28,7 @@ public class _01_RegisterSteps extends Parent {
     @And("Navigate to Registration Page")
     public void navigateToRegistrationPage() {
         dc.findAndClick("signIn");
-        dc.findAndSend("emailNew","abcd@technostudy.com");
+        dc.findAndSend("emailNew","abc@metcan.com");
         dc.findAndClick("createAnAccountBut");
 
     }

@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>ProjeClever</artifactId>
+    <artifactId>Cucumber</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -40,7 +40,7 @@
         </dependency>
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
-            <artifactId>webdrivermanager</artifactId>
+            <artifactId>webdrivermanager</artifactId> <!--burası webdriverlar için hepsini içeriyor-->
             <version>5.3.1</version>
         </dependency>
         <dependency>
@@ -79,42 +79,77 @@
             <artifactId>cucumber-reporting</artifactId>
             <version>5.7.4</version>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.projectlombok</groupId>-->
+<!--            <artifactId>lombok</artifactId>-->
+<!--            <version>1.18.24</version>-->
+<!--            <optional>true</optional>-->
+<!--        </dependency>-->
+        <!-- JDBC için eklendi -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.18</version>
+        </dependency>
     </dependencies>
+<!--    <build>-->
+<!--        <plugins>-->
+<!--            <plugin>&lt;!&ndash;derlemek için&ndash;&gt;-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-surefire-plugin</artifactId>-->
+<!--                <version>3.0.0-M1</version>-->
+<!--                <configuration>-->
+<!--                    <suiteXmlFiles>-->
+<!--                        <suiteXmlFile>src/test/java/XMLFiles/ParallelTesting_MasterRep.xml</suiteXmlFile>-->
+<!--                    </suiteXmlFiles>-->
+
+<!--&lt;!&ndash;                    <includes>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <include>**/_08_TestRunnerMasterReport.java</include>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </includes>&ndash;&gt;-->
+<!--                    <testFailureIgnore>true</testFailureIgnore>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
+<!--            <plugin>-->
+<!--                <groupId>net.masterthought</groupId>-->
+<!--                <artifactId>maven-cucumber-reporting</artifactId>-->
+<!--                <version>5.0.0</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>execution</id>-->
+<!--                        <phase>test</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>generate</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <projectName>Cucumber HTML Reports</projectName>-->
+<!--                            <outputDirectory>${project.build.directory}/Report/cucumber-reports</outputDirectory>-->
+<!--                            <inputDirectory>${project.build.directory}</inputDirectory>-->
+<!--                            <jsonFiles>-->
+<!--                                <param>**/cucumber*.json</param>-->
+<!--                            </jsonFiles>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
+<!--        </plugins>-->
+<!--    </build>-->
+
+<!--    Burası Jenkins raporlama ve istediğimiz class ı çalıştırmak için olan bölüm-->
+<!--    https://maven.apache.org/surefire/maven-surefire-plugin/examples/inclusion-exclusion.html-->
     <build>
         <plugins>
-            <plugin><!--derlemek için-->
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M1</version>
                 <configuration>
 
                     <includes>
-                        <include>**/_08_TestRunnerMasterReport.java</include>
+                        <!-- for  run class or classes  **/:bulunduğu lokasyonu bütün klasörlere göre bulabiliyor   -->
+                        <include>**/_04_TestRunnerSmoke.java</include>
                     </includes>
-                    <testFailureIgnore>true</testFailureIgnore>
+
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>net.masterthought</groupId>
-                <artifactId>maven-cucumber-reporting</artifactId>
-                <version>5.0.0</version>
-                <executions>
-                    <execution>
-                        <id>execution</id>
-                        <phase>test</phase>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <configuration>
-                            <projectName>Cucumber HTML Reports</projectName>
-                            <outputDirectory>${project.build.directory}/Report/cucumber-reports</outputDirectory>
-                            <inputDirectory>${project.build.directory}</inputDirectory>
-                            <jsonFiles>
-                                <param>**/cucumber*.json</param>
-                            </jsonFiles>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
